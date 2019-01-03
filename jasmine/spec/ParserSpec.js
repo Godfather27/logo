@@ -21,7 +21,6 @@ describe("Parser",function(){
 
     let command, argument;
     command = parser.next();
-    console.log(command);
     expect(command instanceof Token).toBeTruthy();
     expect(command.type).toEqual('wrd');
     expect(command.data).toEqual('right');
@@ -40,7 +39,6 @@ describe("Parser",function(){
 
     let command, argument;
     command = parser.next();
-    console.log(command);
     expect(command instanceof Token).toBeTruthy();
     expect(command.type).toEqual('ops');
     expect(command.data).toEqual('+');
@@ -65,7 +63,6 @@ describe("Parser",function(){
 
     let command, argument;
     command = parser.next();
-    console.log(command);
     expect(command instanceof Token).toBeTruthy();
     expect(command.type).toEqual('wrd');
     expect(command.data).toEqual('make');
@@ -90,7 +87,6 @@ describe("Parser",function(){
 
     let command, argument, subcommand;
     command = parser.next();
-    console.log(command);
     expect(command instanceof Token).toBeTruthy();
     expect(command.type).toEqual('ops');
     expect(command.data).toEqual('*');
@@ -124,7 +120,6 @@ describe("Parser",function(){
 
     let command, argument, subcommand;
     command = parser.next();
-    console.log(command);
     expect(command instanceof Token).toBeTruthy();
     expect(command.type).toEqual('ops');
     expect(command.data).toEqual('+');
@@ -156,7 +151,6 @@ describe("Parser",function(){
     parser.load(tokenizer);
 
     let command = parser.next();
-    console.log(command);
     expect(command instanceof Token).toBeTruthy();
     expect(command.type).toEqual('wrd');
     expect(command.data).toEqual('repeat');
@@ -169,7 +163,6 @@ describe("Parser",function(){
     expect(argument.data).toEqual(100);
 
     let list = command.args[1];
-    console.log(list);
 
     expect(list instanceof Token).toBeTruthy();
     expect(list.type).toEqual('lst');
@@ -183,7 +176,6 @@ describe("Parser",function(){
     parser.load(tokenizer);
 
     let token = parser.next();
-    console.log(token);
     expect(token instanceof Token).toBeTruthy();
     expect(token.type).toEqual('def');
     expect(token.data).toEqual('square');
@@ -196,14 +188,12 @@ describe("Parser",function(){
     parser.load(tokenizer);
 
     let token = parser.next();
-    console.log(token);
     expect(token instanceof Token).toBeTruthy();
     expect(token.type).toEqual('def');
     expect(token.data).toEqual('punkt');
     expect(token.args.raw.length).toEqual(2);
 
     token = parser.next();
-    console.log(token);
     expect(token instanceof Token).toBeTruthy();
     expect(token.type).toEqual('wrd');
     expect(token.data).toEqual('punkt');

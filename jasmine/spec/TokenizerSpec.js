@@ -15,7 +15,6 @@ describe("Tokenizer",function(){
     tokenizer.load("right 10");
     let token;
     token = tokenizer.next();
-    console.log(token instanceof Token);
     expect(token instanceof Token).toBeTruthy();
     expect(token.type).toEqual('wrd');
     expect(token.data).toEqual('right');

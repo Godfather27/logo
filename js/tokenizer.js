@@ -14,20 +14,20 @@ class Token {
   }
 }
 
-const ops = [ '!=', '<>', '<=', '>=', '<', '>', '+', '-', '*', '/', '%', '=', '[', ']', '(', ')' ];
 class Tokenizer {
   constructor() {
+    this.ops = [ '!=', '<>', '<=', '>=', '<', '>', '+', '-', '*', '/', '%', '=', '[', ']', '(', ')' ];
   }
 
   load(text) {
     text = text
-    .replace(/\;.*$/g,"")
-    .replace(/\n/g,"")
-    .replace(/(\()([^\s])/g, (_, p1, p2) => `${p1} ${p2}`)
-    .replace(/([^\s])(\))/g, (_, p1, p2) => `${p1} ${p2}`)
-    console.log(text)
-    this.source = text
-      .split(" ")
+      .replace(/\;.*$/g, "")
+      .replace(/\n/g, " ")
+      .replace(/(\[)(\w+)/g, (_, p1, p2) => `${p1} ${p2}`)
+      .replace(/(\w+)(\])/g, (_, p1, p2) => `${p1} ${p2}`)
+      .replace(/(\()([^\s])/g, (_, p1, p2) => `${p1} ${p2}`)
+      .replace(/([^\s])(\))/g, (_, p1, p2) => `${p1} ${p2}`)
+    this.source = text.split(" ").filter(token => token !== "");
   }
 
   peek() {
@@ -44,7 +44,7 @@ class Tokenizer {
     } else if(!isNaN(parseFloat(data)) && typeof parseFloat(data) === "number") {
       data = parseFloat(data);
       type = "num";
-    } else if (/to|end/i.test(data) || ops.indexOf(data) !== -1) {
+    } else if (/to|end/i.test(data) || this.ops.indexOf(data) !== -1) {
       type = "ops"
       data = data.toLowerCase();
     } else if (/^:/.test(data)) {
